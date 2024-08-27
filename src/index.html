@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>หน้าหลัก</title>
   <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -10,41 +11,72 @@
   <div id="header-block"></div>
 
   <!-- Slide -->
-  <div class="carousel w-full relative">
-    <div id="slide1" class="carousel-item w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
-        <img src="/images/slide1.png" class="w-full h-full object-cover object-center" alt="Slide 1">
-        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <button onclick="showSlide(3)" class="btn btn-circle">&larr;</button>
-            <button onclick="showSlide(2)" class="btn btn-circle">&rarr;</button>
+  <div class="carousel w-full relative overflow-hidden sm:pt-[82px]">
+    <div class="carousel-inner flex transition-transform duration-700 ease-in-out">
+        <div id="slide1" class="carousel-item w-full flex-none h-auto sm:h-[300px] md:h-[400px] lg:h-[600px]">
+            <a href="#">
+              <img src="/images/sl1.jpg" class="w-full h-full object-cover object-center" alt="Slide 1">
+            </a>
+        </div>
+        <div id="slide2" class="carousel-item w-full flex-none h-auto sm:h-[300px] md:h-[400px] lg:h-[600px]">
+            <a href="#">
+              <img src="/images/sl2.jpg" class="w-full h-full object-cover object-center" alt="Slide 2">
+            </a>
+        </div>
+        <div id="slide3" class="carousel-item w-full flex-none h-auto sm:h-[300px] md:h-[400px] lg:h-[600px]">
+            <a href="#">
+              <img src="/images/sl3.jpg" class="w-full h-full object-cover object-center" alt="Slide 3">
+            </a>
+        </div>
+        <div id="slide4" class="carousel-item w-full flex-none h-auto sm:h-[300px] md:h-[400px] lg:h-[600px]">
+            <a href="#">
+              <img src="/images/sl4.webp" class="w-full h-full object-cover object-center" alt="Slide 4">
+            </a>
+        </div>
+        <div id="slide5" class="carousel-item w-full flex-none h-auto sm:h-[300px] md:h-[400px] lg:h-[600px]">
+            <a href="#">
+              <img src="/images/sl5.jpg" class="w-full h-full object-cover object-center" alt="Slide 5">
+            </a>
         </div>
     </div>
-    <div id="slide2" class="carousel-item absolute w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
-        <img src="/images/slide2.jpg" class="w-full h-full object-cover object-center" alt="Slide 2">
-        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <button onclick="showSlide(1)" class="btn btn-circle">&larr;</button> 
-            <button onclick="showSlide(3)" class="btn btn-circle">&rarr;</button>
-        </div>
+
+    <!-- Indicators -->
+    <div class="absolute flex justify-center w-full bottom-4 space-x-2">
+        <button onclick="showSlide(0)" class="indicator w-3 h-3 rounded-full bg-gray-300"></button>
+        <button onclick="showSlide(1)" class="indicator w-3 h-3 rounded-full bg-gray-300"></button>
+        <button onclick="showSlide(2)" class="indicator w-3 h-3 rounded-full bg-gray-300"></button>
+        <button onclick="showSlide(3)" class="indicator w-3 h-3 rounded-full bg-gray-300"></button>
+        <button onclick="showSlide(4)" class="indicator w-3 h-3 rounded-full bg-gray-300"></button>
     </div>
-    <div id="slide3" class="carousel-item absolute w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
-        <img src="/images/slide3.png" class="w-full h-full object-cover object-center" alt="Slide 3">
-        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <button onclick="showSlide(2)" class="btn btn-circle">&larr;</button> 
-            <button onclick="showSlide(1)" class="btn btn-circle">&rarr;</button>
-        </div>
+
+    <!-- Navigation Buttons -->
+    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 sm:pt-[80px]">
+        <button onclick="prevSlide()" class="btn btn-circle">&larr;</button>
+        <button onclick="nextSlide()" class="btn btn-circle">&rarr;</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero py-12 bg-white">
+    <div class="hero-content text-center">
+      <div class="max-w-1/2">
+        <h1 class="text-5xl font-bold">สถาบันไอทีเนียสเอ็นจิเนียริ่ง</h1>
+        <p class="py-6 text-lg">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos id totam quos cumque quis, est exercitationem, odio cupiditate nostrum at nulla reprehenderit accusamus odit, dicta aspernatur. Et ab distinctio dolores consequatur enim quos dolorum dicta maiores adipisci voluptatem delectus pariatur, voluptates, quia aliquid odio. Voluptate unde corporis cupiditate vel at quasi soluta, ipsam error ad nostrum nesciunt eos ipsum adipisci quaerat eius minus blanditiis quibusdam velit ratione. Autem animi rerum provident excepturi, ad unde omnis architecto ab repellat officia fugit possimus delectus voluptate pariatur placeat ex recusandae nemo, vel laudantium velit illo? Repellendus hic commodi facere ratione, ipsam repellat harum cupiditate voluptate beatae itaque quaerat possimus
+        </p>
+      </div>
     </div>
   </div>
 
   <!-- Content Grid (ตาราง) -->
-  <div class="px-10 py-6 mx-auto lg:px-8 sm:pt-10">
-    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
-      <div class="p-5 bg-red-200 rounded-md">Cell 1</div>
-      <div class="p-5 bg-green-200 rounded-md">Cell 2</div>
-      <div class="p-5 bg-blue-200 rounded-md">Cell 3</div>
-      <div class="p-5 bg-yellow-200 rounded-md">Cell 4</div>
-      <div class="p-5 bg-purple-200 rounded-md">Cell 5</div>
-      <div class="p-5 bg-pink-200 rounded-md">Cell 6</div>
-      <div class="p-5 bg-orange-200 rounded-md">Cell 7</div>
-      <div class="p-5 bg-slate-200 rounded-md">Cell 8</div>
+  <div class="px-10 sm:px-2 py-6 mx-auto lg:px-8 sm:pt-2">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="p-5 h-48 bg-red-200 rounded-md">News 1</div>
+      <div class="p-5 h-48 bg-green-200 rounded-md">News 2</div>
+      <div class="p-5 h-48 bg-blue-200 rounded-md">News 3</div>
+      <div class="p-5 h-48 bg-yellow-200 rounded-md">News 4</div>
+      <div class="p-5 h-48 bg-purple-200 rounded-md">News 5</div>
+      <div class="p-5 h-48 bg-pink-200 rounded-md">News 6</div>
     </div>
   </div>
 

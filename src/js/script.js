@@ -14,18 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ซ่อนแสดงเมนู
 document.addEventListener('click', function(event) {
-  // ตรวจว่าผู้ใช้คลิ๊กในเมนูหลักหรือเมนูย่อย
   const mainDetailsElements = document.querySelectorAll('.main-details')
   const subDetailsElements = document.querySelectorAll('.sub-details')
 
-  // ถ้าคลิ๊กในเมนูหลัก
   mainDetailsElements.forEach(details => {
       if (!details.contains(event.target)) {
           details.removeAttribute('open')
       }
   })
 
-  // ปิดเมนูย่อยอื่นๆ ที่ไม่เกี่ยวข้อง
   document.querySelectorAll('.sub-details').forEach(subDetails => {
       if (!subDetails.contains(event.target)) {
           subDetails.removeAttribute('open')
@@ -34,30 +31,88 @@ document.addEventListener('click', function(event) {
 })
 
 // Slide show
-let currentSlide = 1
+let currentSlide = 0
+let autoSlideInterval = null
 
-function showSlide(slideIndex) {
-  // console.log('slideIndex', slideIndex)
+// ผูกฟังก์ชัน showSlide เข้ากับ window
+window.showSlide = function(slideIndex) {
   const slides = document.querySelectorAll('.carousel-item')
-  slides.forEach((slide, index) => {
-    if (index + 1 === slideIndex) {
-      slide.style.opacity = '1'
-      slide.style.zIndex = '10'
+  const totalSlides = slides.length
+  const carouselInner = document.querySelector('.carousel-inner')
+  const indicators = document.querySelectorAll('.indicator')
+  
+  if (slideIndex >= totalSlides) {
+      slideIndex = 0
+  } else if (slideIndex < 0) {
+      slideIndex = totalSlides - 1
+  }
+
+  // เลื่อน slide
+  carouselInner.style.transform = `translateX(-${slideIndex * 100}%)`
+
+  // อัปเดต indicators
+  indicators.forEach((indicator, index) => {
+    if (index === slideIndex) {
+      indicator.classList.add('bg-white')
+      indicator.classList.remove('bg-gray-300')
     } else {
-        slide.style.opacity = '0'
-        slide.style.zIndex = '0'
+      indicator.classList.add('bg-gray-300')
+      indicator.classList.remove('bg-white')
     }
   })
+
   currentSlide = slideIndex
 }
 
-// แสดงสไลด์แรกเมื่อโหลดหน้า
-document.addEventListener("DOMContentLoaded", function() {
-  showSlide(currentSlide);
+window.nextSlide = function() {
+  showSlide(currentSlide + 1)
+  resetAutoSlide() // เริ่ม auto slide ใหม่หลังจากหยุด
+}
+
+window.prevSlide = function() {
+  showSlide(currentSlide - 1)
+  resetAutoSlide() // เริ่ม auto slide ใหม่หลังจากหยุด
+}
+
+function startAutoSlide() {
+  stopAutoSlide() // หยุดการทำงานก่อนหน้านี้เพื่อป้องกันหลาย interval ซ้อนกัน
+  autoSlideInterval = setInterval(function() {
+    nextSlide()
+  }, 3000)
+}
+
+function stopAutoSlide() {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval)
+    autoSlideInterval = null
+  }
+}
+
+function resetAutoSlide() {
+  stopAutoSlide() // หยุด auto slide เมื่อผู้ใช้คลิกปุ่ม next หรือ previous
+  startAutoSlide() // เริ่ม auto slide ใหม่
+}
+
+// ให้ indicator หยุด auto slide และเปลี่ยนสไลด์
+document.querySelectorAll('.indicator').forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    showSlide(index)
+    resetAutoSlide() // รีเซ็ต auto slide เมื่อผู้ใช้คลิก indicator
+  })
 })
 
-// ตั้งค่าให้เปลี่ยนสไลด์ทุกๆ 3 วินาที
-setInterval(function() {
-  currentSlide = currentSlide === 3 ? 1 : currentSlide + 1
+// แสดงสไลด์แรกเมื่อโหลดหน้า
+document.addEventListener("DOMContentLoaded", function() {
   showSlide(currentSlide)
-}, 3000)
+  startAutoSlide() // เริ่ม auto slide เมื่อหน้าโหลดเสร็จ
+})
+
+window.toggleMenu = function(event) {
+  event.preventDefault()
+  const nextElement = event.target.nextElementSibling
+  const svgElement = event.target.querySelector('svg')
+  if (nextElement && nextElement.tagName === 'UL') {
+    nextElement.classList.toggle('hidden')
+    svgElement.classList.toggle('rotate-180')
+  }
+}
