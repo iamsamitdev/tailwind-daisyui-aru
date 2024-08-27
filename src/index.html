@@ -1,0 +1,56 @@
+<!doctype html>
+<html data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header-block"></div>
+
+  <!-- Slide -->
+  <div class="carousel w-full relative">
+    <div id="slide1" class="carousel-item w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
+        <img src="/images/slide1.png" class="w-full h-full object-cover object-center" alt="Slide 1">
+        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <button onclick="showSlide(3)" class="btn btn-circle">&larr;</button>
+            <button onclick="showSlide(2)" class="btn btn-circle">&rarr;</button>
+        </div>
+    </div>
+    <div id="slide2" class="carousel-item absolute w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
+        <img src="/images/slide2.jpg" class="w-full h-full object-cover object-center" alt="Slide 2">
+        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <button onclick="showSlide(1)" class="btn btn-circle">&larr;</button> 
+            <button onclick="showSlide(3)" class="btn btn-circle">&rarr;</button>
+        </div>
+    </div>
+    <div id="slide3" class="carousel-item absolute w-full h-auto lg:h-[600px] transition-opacity duration-700 z-0 opacity-1">
+        <img src="/images/slide3.png" class="w-full h-full object-cover object-center" alt="Slide 3">
+        <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <button onclick="showSlide(2)" class="btn btn-circle">&larr;</button> 
+            <button onclick="showSlide(1)" class="btn btn-circle">&rarr;</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- Content Grid (ตาราง) -->
+  <div class="px-10 py-6 mx-auto lg:px-8 sm:pt-10">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div class="p-5 bg-red-200 rounded-md">Cell 1</div>
+      <div class="p-5 bg-green-200 rounded-md">Cell 2</div>
+      <div class="p-5 bg-blue-200 rounded-md">Cell 3</div>
+      <div class="p-5 bg-yellow-200 rounded-md">Cell 4</div>
+      <div class="p-5 bg-purple-200 rounded-md">Cell 5</div>
+      <div class="p-5 bg-pink-200 rounded-md">Cell 6</div>
+      <div class="p-5 bg-orange-200 rounded-md">Cell 7</div>
+      <div class="p-5 bg-slate-200 rounded-md">Cell 8</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-block"></div>
+
+  <script type="module" src="/js/script.js"></script>
+</body>
+</html>
